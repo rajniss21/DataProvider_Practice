@@ -23,11 +23,11 @@ public class LoginPage {
     @FindBy(className="phpdebugbar-close-btn")
     WebElement phpDebuggerCloseBtn;
 
-    public WebElement getEmailInput() {
+    public WebElement setEmailInput() {
         return emailInput;
     }
 
-    public WebElement getPasswrdInput() {
+    public WebElement setPasswordInput() {
         return passwrdInput;
     }
     public void clickLoginBtn(){

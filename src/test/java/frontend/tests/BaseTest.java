@@ -6,21 +6,23 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.log4testng.Logger;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class BaseTest {
 
     public WebDriver myWebDriver;
     public String MYURL;
 
-    Logger myLogger_setup = Logger.getLogger("Setup");
+
+   Logger myLogger_setup = Logger.getLogger("Setup");
 
     @BeforeMethod
     public void setup() throws IOException{
@@ -63,5 +65,12 @@ public class BaseTest {
         WebDriverWait waitforoption = new WebDriverWait(myWebDriver, timeOut);
         waitforoption.until(ExpectedConditions.invisibilityOf(elemToWait));
     }
-
+    public void assertContains(WebElement elementToAssert, String requiredText){
+        Assert.assertTrue(elementToAssert.getText().contains(requiredText));
+        myLogger_setup.info("Assertions results: \n"+"\tExpected Value: "+requiredText+"\n\t"+"Actual Value: "+elementToAssert.getText());
+    }
+    public void selectWebElement(WebElement webElementToSelect, String selectionValue){
+        Select select = new Select(webElementToSelect);
+        select.selectByValue(selectionValue);
+    }
 }
