@@ -44,7 +44,7 @@ public class OrderPlacementTest extends BaseTest{
 
         landingPageObj.getSignin_outButton().click();
         waitfor(landingPageObj.getSignInForm(), 10);
-        landingPageObj.getSigninEmailInput()
+        landingPageObj.getSigninEmailInput();
 
 
 
