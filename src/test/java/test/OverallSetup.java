@@ -42,13 +42,12 @@ public class OverallSetup {
         Assert.assertEquals(dashboardPageObj.getNameOfTheUserLoggedIn().getText(), "Yurstore Superadmin");
         myLogger_setup.info("Login Successful");
     }
-    public void LoginToTheModule(){
+   /* public void LoginToTheModule(){
         LoginPage loginPageObj = new LoginPage(myWebDriver);
-        loginPageObj.getPhpDebuggerCloseBtn();
         loginPageObj.setEmailInput("superadmin@yurstore.com");
         loginPageObj.setPasswordInput("123admin@");
         loginPageObj.clickLoginBtn();
-    }
+    }*/
     public void waitFor(WebElement elementToWait){
         WebDriverWait waitForOption = new WebDriverWait(myWebDriver, 8);
         waitForOption.until(ExpectedConditions.visibilityOf(elementToWait));
