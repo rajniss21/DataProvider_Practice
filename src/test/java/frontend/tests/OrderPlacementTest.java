@@ -44,12 +44,40 @@ public class OrderPlacementTest extends BaseTest{
 
         landingPageObj.getSignin_outButton().click();
         waitfor(landingPageObj.getSignInForm(), 10);
-        landingPageObj.getSigninEmailInput();
+        landingPageObj.getSigninEmailInput().sendKeys("ekgothamuser@gmail.com");
+        landingPageObj.getSigninPasswordInput().sendKeys("ironmansucks");
+        landingPageObj.getSignInSubmitBtn().click();
 
+        Thread.sleep(2500);
+        cartPageObj.getPlaceOrderBtn().click();
+        Thread.sleep(2500);
 
+        contactPageObj.getContactNextBtn().click();
 
+        waitfor(shippingPageObj.getShippingAddressForm(), 10);
+        shippingPageObj.getEnterNewAddressBtn().click();
+        shippingPageObj.getStreetAddrInput().sendKeys("120 Bush St");
+        shippingPageObj.getCityAddrInput().sendKeys("San Francisco");
+        shippingPageObj.getZipcodeInput().sendKeys("94104-41317");
+        selectWebElement(shippingPageObj.getStateSelection(), "CA");
+        shippingPageObj.getShippingsubmitBtn().click();
+
+        waitfor(paymentPageObj.getPaymentDetailForm(), 10);
+        paymentPageObj.getCreditCardOptionBtn().click();
+        paymentPageObj.getNameOnCardInput().sendKeys(creditCardOwner);
+        paymentPageObj.getExpirationMonthInput().sendKeys("05");
+        paymentPageObj.getExpirationYearInput().sendKeys("2020");
+        paymentPageObj.getCcvInput().sendKeys("123");
+        paymentPageObj.getCreditCardNumberInput().sendKeys(creditCardNumber);
+        paymentPageObj.getCardPaymentNextBtn().click();
+
+        waitfor(orderConfirmationPageObj.getOrderBtn(), 10);
+        orderConfirmationPageObj.getOrderBtn().click();
+        waitfor(landingPageObj.getToastMessage(), 10);
+        assertContains(landingPageObj.getToastMessage(), "Your order is successfully placed");
 
     }
+
     public void readOrderValues() throws IOException{
         Properties propertiesObject = new Properties();
         FileReader readMyPresets = new FileReader("product-description.properties");
